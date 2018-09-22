@@ -1,0 +1,215 @@
+{
+    "credit_perso": {
+        "credit" : {
+            "loan_type_unique_name" : "credit_perso",
+            "amount_min" : 2501,
+            "amount_max" : 100000,
+            "amount_default" : 15001,
+            "range_duration_default" : 84,
+            "range_duration_type" : "months"
+        },
+        "description" : {
+            "title" : "Crédit personnel"
+        },
+        "ranges" : [
+            {
+                "range_min" : 2501,
+                "range_max" : 5000,
+                "range_rate" : 12.49,
+                "range_duration" : [24,30]
+            },
+            {
+                "range_min" : 5001,
+                "range_max" : 5600,
+                "range_rate" : 6.95,
+                "range_duration" : [24,30,36]
+            },
+            {
+                "range_min" : 5601,
+                "range_max" : 7500,
+                "range_rate" : 6.95,
+                "range_duration" : [24,30,36,42]
+            },
+            {
+                "range_min" : 7501,
+                "range_max" : 10000,
+                "range_rate" : 6.95,
+                "range_duration" : [30,36,42,48]
+            },
+            {
+                "range_min" : 10001,
+                "range_max" : 15000,
+                "range_rate" : 6.45,
+                "range_duration" : [24,30,36,42,48,60]
+            },
+            {
+                "range_min" : 15001,
+                "range_max" : 20000,
+                "range_rate" : 6.45,
+                "range_duration" : [24,30,36,42,48,60,72,84]
+            },
+            {
+                "range_min" : 20001,
+                "range_max" : 100000,
+                "range_rate" : 6.45,
+                "range_duration" : [24,30,36,42,48,60,72,84,120]
+            }
+        ]
+    },
+    "credit_auto": {
+        "credit" : {
+            "loan_type_unique_name" : "credit_auto",
+            "amount_min" : 2500,
+            "amount_max" : 100000,
+            "amount_default" : 15001,
+            "range_duration_default" : 84,
+            "range_duration_type" : "months",
+            "slider_increments" : 50
+        },
+        "description" : {
+            "title" : "Crédit auto"
+        },
+        "ranges" : [
+            {
+                "range_min" : 2500,
+                "range_max" : 3700,
+                "range_rate" : 1.39,
+                "range_duration" : [24,30]
+            },
+            {
+                "range_min" : 3701,
+                "range_max" : 5600,
+                "range_rate" : 1.39,
+                "range_duration" : [30,36]
+            },
+            {
+                "range_min" : 5601,
+                "range_max" : 7500,
+                "range_rate" : 1.39,
+                "range_duration" : [30,36,42]
+            },
+            {
+                "range_min" : 7501,
+                "range_max" : 10000,
+                "range_rate" : 1.39,
+                "range_duration" : [30,36,42,48]
+            },
+            {
+                "range_min" : 10001,
+                "range_max" : 15000,
+                "range_rate" : 1.39,
+                "range_duration" : [30,36,42,48,60]
+            },
+            {
+                "range_min" : 15001,
+                "range_max" : 100000,
+                "range_rate" : 1.39,
+                "range_duration" : [30,36,42,48,60,72,84]
+            }
+        ]
+    },
+    "credit_travaux": {
+        "credit" : {
+            "loan_type_unique_name" : "credit_travaux",
+            "amount_min" : 2500,
+            "amount_max" : 100000,
+            "amount_default" : 20001,
+            "range_duration_default" : 120,
+            "range_duration_type" : "months",
+            "slider_increments" : 50
+        },
+        "description" : {
+            "title" : "Crédit travaux"
+        },
+        "ranges" : [
+            {
+                "range_min" : 2500,
+                "range_max" : 5000,
+                "range_rate" : 2.7,
+                "range_duration" : [6,12,24,30]
+            },
+            {
+                "range_min" : 5001,
+                "range_max" : 5600,
+                "range_rate" : 2.7,
+                "range_duration" : [6,12,24,30,36]
+            },
+            {
+                "range_min" : 5601,
+                "range_max" : 7500,
+                "range_rate" : 2.7,
+                "range_duration" : [6,12,24,30,36,42]
+            },
+            {
+                "range_min" : 7501,
+                "range_max" : 10000,
+                "range_rate" : 2.7,
+                "range_duration" : [6,12,24,30,36,42,48]
+            },
+            {
+                "range_min" : 10001,
+                "range_max" : 15000,
+                "range_rate" : 2.7,
+                "range_duration" : [6,12,24,30,36,42,48,60]
+            },
+            {
+                "range_min" : 15001,
+                "range_max" : 20000,
+                "range_rate" : 2.7,
+                "range_duration" : [6,12,24,30,36,42,48,60,72,84]
+            },
+            {
+                "range_min" : 20001,
+                "range_max" : 37500,
+                "range_rate" : 2.7,
+                "range_duration" : [6,12,24,30,36,42,48,60,72,84,120]
+            },
+            {
+                "range_min" : 37501,
+                "range_max" : 100000,
+                "range_rate" : 2.7,
+                "range_duration" : [6,12,24,30,36,42,48,60,72,84,120,180]
+            }
+        ]
+    },
+    "credit_hypo_fixed": {
+        "credit" : {
+            "loan_type_unique_name" : "credit_hypo_fixed",
+            "amount_min" : 100000,
+            "amount_max" : 1000000,
+            "amount_default" : 150000,
+            "range_duration_default" : 30,
+            "range_duration_type" : "years",
+            "slider_increments" : 10000
+        },
+        "description" : {
+            "title" : "Crédit hypothécaire"
+        },
+        "ranges" : [
+            {
+                "range_rate" : 1.29,
+                "range_duration" : [5]
+            },
+            {
+                "range_rate" : 1.37,
+                "range_duration" : [10]
+            },
+            {
+                "range_rate" : 1.66,
+                "range_duration" : [15]
+            },
+            {
+                "range_rate" : 1.86,
+                "range_duration" : [20]
+            },
+            {
+                "range_rate" : 2.16,
+                "range_duration" : [25]
+            },
+            {
+                "range_rate" : 2.25,
+                "range_duration" : [30]
+            }
+        ]
+    }
+}

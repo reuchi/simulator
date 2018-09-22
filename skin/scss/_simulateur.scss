@@ -1,0 +1,100 @@
+/* CSS CUSTOM SIMULATEUR */
+
+
+/* ###### GENERAL ###### */
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+header {
+  background-color: $primary-color;
+  padding: 30px 15px;
+  color: white; 
+}
+
+#content {
+  margin: 3.5rem 0;
+}
+
+footer {
+  margin-top: auto;
+  background-color: $primary-color;
+  padding: 5px 15px;
+  color: white;
+}
+
+/* ###### TITLES ###### */
+
+.maintitle {
+  text-transform: uppercase;
+}
+
+/* ###### SIMULATEUR ###### */
+
+#simulator {
+  padding-right: 100px;
+}
+
+#durations {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.radio-custom {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+.radio-custom label {
+  text-align: center;
+  width: 100%;
+  border: 1px solid #cfcfcf;
+  background-color: #fff;
+  padding: 14.4px 15px;
+  border-radius: 5px;
+  color: darken($primary-color,10%);
+  font-family: Montserrat,sans-serif;
+  font-size: 13.5px;
+  font-weight: 600 !important;
+  transition: all .5s ease-in-out;
+  cursor: pointer;
+
+  span {
+    display: block;
+  }
+}
+
+.radio-custom input[type="radio"]{
+  position: absolute;
+  margin-left: -20px;
+  margin-top: 4px \9;
+  clip: rect(0,0,0,0);
+}
+
+.radio-custom label:hover {
+  border-color: darken($primary-color,10%);
+}
+
+.radio-custom label.active {
+  background-color: $primary-color;
+  border-color: darken($primary-color,10%);
+  color: #fff;
+}
+
+.form-label {
+  font-weight: 600;
+}
+
+
+#simulator_result table {
+  width: 100%;
+  margin-top: 2rem;
+}
