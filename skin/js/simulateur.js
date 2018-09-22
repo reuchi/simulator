@@ -88,7 +88,14 @@ function loadCreditType() {
 	
 	var typeOptions;
 	for (key in creditData) {
-    typeOptions += "<option duration-default='"+creditData[key]['credit']['range_duration_default']+"' value='"+creditData[key]['credit']['loan_type_unique_name']+"'>"+ creditData[key]['description']['title'] +"</option>";
+
+		durationDefault = creditData[key]['credit']['range_duration_default'];
+		if(key == "credit_hypo_fixed")
+		{
+			durationDefault = durationDefault * 12;
+		}
+
+    typeOptions += "<option duration-default='"+durationDefault+"' value='"+creditData[key]['credit']['loan_type_unique_name']+"'>"+ creditData[key]['description']['title'] +"</option>";
 	}
 	$("#type").append(typeOptions).change();
 }
@@ -118,7 +125,7 @@ function CreditAmountChange() {
 	var amount = checkAmount($(this));
 	// On récupère le type de crédit préalablement sélectionné
 	var creditType = $('#type').val();
-	var durationDefault = $("#type option:selected").attr("duration-default");
+	var durationDefault = parseFloat($("#type option:selected").attr("duration-default"));
 	// On récupère le range en fonction du montant et du type de crédit
 	var ranges = getRange(amount, creditType);
 	// Remplissage résumé simulation
@@ -127,9 +134,10 @@ function CreditAmountChange() {
 	$("#summary-taeg").empty().append("--")
 	$("#summary-duration").empty().append("--")
 	$("#summary-total").empty().append("--")
-	
+
+
 	// On charge les durées disponibles
-	loadDuration(ranges, amount, durationDefault);
+	loadDuration(ranges, amount, durationDefault, creditType);
 
 
 }
@@ -190,7 +198,7 @@ function getRange(amount, creditType)
 /* ################################ */
 /* ######### loadDuration ######### */
 /* ################################ */
-function loadDuration(ranges, amount, durationDefault) {
+function loadDuration(ranges, amount, durationDefault, creditType) {
 
 	var durations = "";
 	for (var i=0 ; i<ranges.length ; i++)
@@ -198,6 +206,12 @@ function loadDuration(ranges, amount, durationDefault) {
 		for(var j=0; j<ranges[i]['range_duration'].length ; j++)
 		{
 			var durationValue = ranges[i]['range_duration'][j];
+
+			if(creditType == 'credit_hypo_fixed')
+			{
+				durationValue = durationValue * 12;
+			}
+
 			var monthly = (amount*(ranges[i]['range_rate']/100)/12) / (1-(Math.pow((1 + (ranges[i]['range_rate']/100)/12),(-durationValue))));
 			monthly = (Math.round(monthly*100)/100).toFixed(2);
 
