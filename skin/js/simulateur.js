@@ -9,6 +9,7 @@ $(document).ready(function () {
 	// Events
 	$("#type").on("change", CreditTypeChange);
 	$("#amount").on("change", CreditAmountChange);
+	$(document).on("change","input[name='duration']", CreditDurationChange);
 
 
 	// BOUTTONS RADIOS
@@ -103,6 +104,9 @@ function CreditTypeChange() {
 		.attr("min", creditData[this.value]['credit']['amount_min'])
 		.attr("max", creditData[this.value]['credit']['amount_max'])		
 		.change();
+
+	// Remplissage résumé simulation
+	$("#summary-type").empty().append($("option:selected",this).text())
 }
 
 /* ###################################### */
@@ -115,11 +119,19 @@ function CreditAmountChange() {
 	// On récupère le type de crédit préalablement sélectionné
 	var creditType = $('#type').val();
 	var durationDefault = $("#type option:selected").attr("duration-default");
-	alert(durationDefault)
 	// On récupère le range en fonction du montant et du type de crédit
 	var ranges = getRange(amount, creditType);
+	// Remplissage résumé simulation
+	$("#summary-amount").empty().append(amount + " €")
+	$("#summary-monthly").empty().append("--")
+	$("#summary-taeg").empty().append("--")
+	$("#summary-duration").empty().append("--")
+	$("#summary-total").empty().append("--")
+	
 	// On charge les durées disponibles
 	loadDuration(ranges, amount, durationDefault);
+
+
 }
 
 /* ############################### */
@@ -149,6 +161,7 @@ function getRange(amount, creditType)
 	var found = false;
 	var ranges = [];
 
+	// Fonctionnement normal : un seul range en fonction de l'amount
 	if(creditType != 'credit_hypo_fixed')
 	{
 		while(i<creditData[creditType]['ranges'].length && found === false)
@@ -162,6 +175,7 @@ function getRange(amount, creditType)
 			i++;
 		}	
 	}
+	// Si Crédit hypotécaire : tableaux de ranges
 	else
 	{
 		for(var i=0; i<creditData[creditType]['ranges'].length ; i++)
@@ -187,18 +201,10 @@ function loadDuration(ranges, amount, durationDefault) {
 			var monthly = (amount*(ranges[i]['range_rate']/100)/12) / (1-(Math.pow((1 + (ranges[i]['range_rate']/100)/12),(-durationValue))));
 			monthly = (Math.round(monthly*100)/100).toFixed(2);
 
-			var checked = "";
-			var active = "";
-			if(durationValue == durationDefault)
-			{
-				checked = "checked";
-				active = "active";
-			}
-
 			durations += '<div> \
 											<div class="radio radio-custom"> \
-												<label class="'+active+'"for="duration_'+durationValue+'"> \
-													<input id="duration_'+durationValue+'" value="'+durationValue+'" '+checked+' name="duration" type="radio"> \
+												<label for="duration_'+durationValue+'"> \
+													<input duration-type="mois" taeg="'+ranges[i]['range_rate']+'" duration="'+durationValue+'" monthly="'+monthly+'" id="duration_'+durationValue+'" value="'+durationValue+'" name="duration" type="radio"> \
 													<span>'+durationValue+' mois</span>\
 													<span class="monthly">'+monthly+ '€</span>\
 												</label> \
@@ -208,4 +214,20 @@ function loadDuration(ranges, amount, durationDefault) {
 	}
 
 	$("#durations .radios_container").empty().append(durations);
+	$("input[id='duration_"+durationDefault+"']").click();
+
+}
+
+/* ######################################## */
+/* ######### CreditDurationChange ######### */
+/* ######################################## */
+function CreditDurationChange() {
+
+	var monthly = parseFloat($(this).attr("monthly"));
+	var duration = parseFloat($(this).attr("duration"));
+	var total = (Math.round(monthly*duration*100)/100).toFixed(2);
+	$("#summary-monthly").empty().append(monthly + " €")
+	$("#summary-taeg").empty().append($(this).attr("taeg") + " %")
+	$("#summary-duration").empty().append(duration + " " + $(this).attr("duration-type"))
+	$("#summary-total").empty().append(total + " €")
 }
