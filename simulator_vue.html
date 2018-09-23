@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Simulateur</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,600" rel="stylesheet"> 
+	<link href="skin/css/compil.min.css"  rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+
+	
+		<header>
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<h1 class="maintitle">Simulateur de crédits</h1>
+					</div>
+				</div>
+			</div>
+		</header>
+
+
+
+		<section id="content">			
+			<div class="container">
+				<div id="simulator" class="row">
+					<div class="col-xl-8 col-lg-8 col-md-7">
+						<div class="form-group">
+							<label class="form-label" for="type">Type de prêt</label>
+							<select v-model="type" id="type" class="custom-select custom-select-lg">
+								  <option v-for="(item, index) in credits" v-bind:value="item.credit.loan_type_unique_name">
+								    {{ item.description.title }}
+								  </option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label class="form-label" for="amount">Montant</label>
+							<div class="input-group">
+								<input id="amount" class="form-control form-control-lg" name="amount" type="number" v-model="amount">
+								<div class="input-group-append">
+							    <span class="input-group-text">€</span>
+							  </div>
+							</div>
+						</div>
+
+						<div id="durations" class="form-group">
+							<label class="form-label" >Durée</label>
+							<div class="radios_container">
+								<div v-for="item in durations"> 
+									<div class="radio radio-custom"> 
+										<label v-bind:for="'duration_' + item.range_duration" :class="{active:item.range_duration == duration}" @click="duration = item.range_duration"> 
+											<input v-model="duration" v-model="duration" v-bind:id="'duration_'+ item.range_duration" v-bind:monthly="item.range_monthly" v-bind:taeg="item.range_taeg" v-bind:value="item.range_duration" name="duration" type="radio" class="custom-radio-input"> 
+											<span>{{item.range_duration}} mois</span>
+											<span>{{item.range_monthly}}  €</span>
+										</label> 
+									</div> 
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="simulator_result" class="col-xl-4 col-lg-4 col-md-5">
+						<h2>Votre simulation</h2>
+						<table>
+							<tr>
+								<td>Type de crédit:</td>
+								<td>{{ typeLabel }}</td>
+							</tr>
+							<tr>
+								<td>Mensualité:</td>
+								<td>{{ monthly }} €</td>
+							</tr>
+							<tr>
+								<td>Montant:</td>
+								<td>{{ amount }} €</td>
+							</tr>
+							<tr>
+								<td>TAEG:</td>
+								<td>{{ taeg }} %</td>
+							</tr>
+							<tr>
+								<td>Durée:</td>
+								<td>{{ duration }} mois</td>
+							</tr>
+							<tr>
+								<td>Total à payer:</td>
+								<td>{{ total }} €</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>		
+
+		<footer>
+			<div class="container">
+				<div class="row">
+					© 2018					
+				</div>
+			</div>
+		</footer>
+
+
+	</div>
+	
+</body>
+
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="skin/js/simulateur_vue.js"></script>
+
+</html>
